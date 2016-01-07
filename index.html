@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="index.css" />
+<body ng-app="unt">
+    <div ng-controller="tasks">
+        <ul>
+            <li ng-repeat="task in tasks">
+                <input ng-model="task.check" type="checkbox" />
+                <span
+                    ng-hide="task.is_write"
+                    ng-click="task_write()"
+                    ng-class="{task_checked: task.check}"
+                >
+                    {{task.task_name}}({{task.work_time}})
+                </span>
+                <div ng-if="task.is_write">
+                    <input ng-model="task.task_name" />
+                    <input ng-model="task.work_time" type="number" />
+                    <button ng-click="task_write_end()">保存</button>
+                </div>
+            </li>
+        </ul>
+        <div>
+            総計：<span>{{sum_work_task()}}</span>
+            使用可能時間：<input ng-model="work_time_full.work_time" type="number" />
+            残り時間：{{work_time_full - sum_work_task()}}
+        </div>
+    </div>
+
+    <script src="angular.min.js"></script>
+    <script src="index.js"></script>
+</body>
