@@ -5,18 +5,19 @@
     <div ng-controller="tasks">
         <ul>
             <li ng-repeat="task in tasks">
-                <input ng-model="task.check" type="checkbox" />
-                <span
-                    ng-hide="task.is_write"
-                    ng-click="task_write()"
-                    ng-class="{task_checked: task.check}"
-                >
-                    {{task.task_name}}({{task.work_time}})
-                </span>
+                <div ng-hide="task.is_write">
+                    <input ng-model="task.check" type="checkbox" />
+                    <span
+                            ng-click="task_write()"
+                            ng-class="{task_checked: task.check}">
+                        {{task.task_name}}({{task.work_time}})
+                    </span>
+                </div>
                 <div ng-if="task.is_write">
                     <input ng-model="task.task_name" />
                     <input ng-model="task.work_time" type="number" />
                     <button ng-click="task_write_end()">保存</button>
+                    <button ng-click="task_delete()">削除</button>
                 </div>
             </li>
         </ul>

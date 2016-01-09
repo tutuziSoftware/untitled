@@ -33,6 +33,12 @@
 
             //TODO サーバに保存
         }
+
+        delete(){
+            delete localStorage[this._id];
+
+            //TODO サーバに保存
+        }
     }
 
     class Tasks extends Array {
@@ -41,19 +47,19 @@
                 //TODO テストデータだからそのうち置き換える
                 this.push({
                     "id":"1",
-                    "task_name":"タスク",
+                    "task_name":"タスクa",
                     "work_time":30/*sec*/,
                     "check":false
                 });
                 this.push({
                     "id":"2",
-                    "task_name":"タスク",
+                    "task_name":"タスクb",
                     "work_time":30/*sec*/,
                     "check":false
                 });
                 this.push({
                     "id":"3",
-                    "task_name":"タスク",
+                    "task_name":"タスクc",
                     "work_time":30/*sec*/,
                     "check":false
                 });
@@ -138,6 +144,13 @@
             }, 0);
 
             return sum;
+        };
+
+        $scope.task_delete = function(){
+            var task = new Task(this.task);
+
+            this.tasks.splice(this.$index, 1);
+            task.delete();
         };
     });
 })();
