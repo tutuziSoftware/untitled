@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="jquery-ui.min.css" />
 <link rel="stylesheet" href="index.css" />
 <body ng-app="unt">
     <div ng-controller="tasks">
-        <ul>
-            <li ng-repeat="task in tasks">
+        <ul unt-sortable>
+            <li ng-repeat="task in tasks" class="task" id="task_{{task.id}}">
                 <div ng-hide="task.is_write">
-                    <input ng-model="task.check" type="checkbox" />
-                    <span
-                            ng-click="task_write()"
-                            ng-class="{task_checked: task.check}">
-                        {{task.task_name}}({{task.work_time}})
-                    </span>
+                    <span class="ui-icon ui-icon-grip-dotted-horizontal sortable_icon"></span>
+                    <div class="task_detail">
+                        <input ng-model="task.check" type="checkbox" />
+                        <span
+                                ng-click="task_write()"
+                                ng-class="{task_checked: task.check}">
+                            {{task.task_name}}({{task.work_time}})
+                        </span>
+                    </div>
                 </div>
                 <div ng-if="task.is_write">
                     <input ng-model="task.task_name" />
@@ -28,6 +32,8 @@
         </div>
     </div>
 
+    <script src="jquery-2.2.0.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <script src="angular.min.js"></script>
     <script src="index.js"></script>
 </body>

@@ -9,3 +9,16 @@ ul{
 li{
     list-style-type: none;
 }
+
+.sortable_icon{
+    position: absolute;
+}
+
+.task{
+    margin: 5px 0px;
+    border: 1px solid black;
+}
+
+.task_detail{
+    margin-left: 19px;
+}

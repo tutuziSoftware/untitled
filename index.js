@@ -11,6 +11,10 @@
             this._check = typeof settings.check === "boolean" ? this.check : false;
         }
 
+        get id(){
+            return this._id;
+        }
+
         get task_name(){
             return this._task_name;
         }
@@ -35,7 +39,7 @@
         }
 
         delete(){
-            delete localStorage[this._id];
+            delete localStorage["task_".this._id];
 
             //TODO サーバに保存
         }
@@ -64,12 +68,22 @@
                     "check":false
                 });
 
+
+
                 //TODO localStorageからデータ取得
                 //TODO 通信してデータ取得
                 setTimeout(()=>{
                     resolv(this);
                 }, 0);
             });
+        }
+
+        save(){
+            var task_list = this.map((task)=>{
+                return task.id;
+            });
+
+            localStorage["task_list"] = JSON.stringify(task_list);
         }
     }
 
@@ -153,4 +167,30 @@
             task.delete();
         };
     });
+
+
+
+    //---DOM処理---
+    app.directive('untSortable', function(){
+        return function(scope, element, iAttrs){
+            $(element).sortable({
+                handle:".sortable_icon",
+                update:function(){
+                    scope.$apply(function(){
+                        var tasks = new Tasks;
+
+                        $(element).sortable("toArray").forEach((task_id)=>{
+                            var task = angular.element($("#"+task_id)).scope().task;
+                            tasks.push(task);
+                        });
+
+                        //TODO タスクの順番を保存できるようにする
+
+                        scope.tasks.save();
+                    });
+                }
+            })
+        };
+    });
 })();
+
