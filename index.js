@@ -28,7 +28,7 @@
         }
 
         save(){
-            localStorage[this._id] = JSON.stringify({
+            localStorage["task_"+this._id] = JSON.stringify({
                 id:this._id,
                 task_name:this._task_name,
                 work_time:this._work_time,
@@ -48,29 +48,14 @@
     class Tasks extends Array {
         doInitialized($http){
             return new Promise((resolv)=>{
-                //TODO テストデータだからそのうち置き換える
-                this.push({
-                    "id":"1",
-                    "task_name":"タスクa",
-                    "work_time":30/*sec*/,
-                    "check":false
-                });
-                this.push({
-                    "id":"2",
-                    "task_name":"タスクb",
-                    "work_time":30/*sec*/,
-                    "check":false
-                });
-                this.push({
-                    "id":"3",
-                    "task_name":"タスクc",
-                    "work_time":30/*sec*/,
-                    "check":false
+                //localStorageからデータ取得
+                var task_id_list = JSON.parse(localStorage["task_list"]);
+
+                task_id_list.forEach((task_id)=>{
+                    var task = new Task(JSON.parse(localStorage["task_"+task_id]));
+                    this.push(task);
                 });
 
-
-
-                //TODO localStorageからデータ取得
                 //TODO 通信してデータ取得
                 setTimeout(()=>{
                     resolv(this);
@@ -185,6 +170,8 @@
                         });
 
                         //TODO タスクの順番を保存できるようにする
+
+                        scope.tasks = tasks;
 
                         scope.tasks.save();
                     });
