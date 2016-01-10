@@ -8,7 +8,7 @@
             this.work_time = settings.work_time ? settings.work_time : 0;
             this._id = settings.id ? settings.id : "";
             this.updated = settings.updated ? new Date(settings.updated).getTime() : "";
-            this._check = typeof settings.check === "boolean" ? this.check : false;
+            this._check = typeof settings.check === "boolean" ? settings.check : false;
         }
 
         get id(){
@@ -19,7 +19,6 @@
             if(typeof check !== "boolean") return;
 
             this._check = check;
-            this.save();
         }
 
         get check(){
@@ -150,6 +149,13 @@
 
             this.tasks.splice(this.$index, 1);
             task.delete();
+        };
+
+        /**
+         * タスクを終了します
+         */
+        $scope.task_end = function(){
+            this.task.save();
         };
     });
 

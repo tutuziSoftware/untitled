@@ -9,7 +9,7 @@
                 <div ng-hide="task.is_write">
                     <span class="ui-icon ui-icon-grip-dotted-horizontal sortable_icon"></span>
                     <div class="task_detail">
-                        <input ng-model="task.check" type="checkbox" />
+                        <input ng-model="task.check" ng-click="task_end()" type="checkbox" />
                         <span
                                 ng-click="task_write()"
                                 ng-class="{task_checked: task.check}">
