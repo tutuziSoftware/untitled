@@ -3,11 +3,11 @@
 
     class Task {
         constructor(settings) {
-            this._task_name = settings.task_name ? settings.task_name : "";
+            this.task_name = settings.task_name ? settings.task_name : "";
             //TODO 数値チェックを入れる
-            this._work_time = settings.work_time ? settings.work_time : 0;
+            this.work_time = settings.work_time ? settings.work_time : 0;
             this._id = settings.id ? settings.id : "";
-            this._updated = settings.updated ? new Date(settings.updated).getTime() : "";
+            this.updated = settings.updated ? new Date(settings.updated).getTime() : "";
             this._check = typeof settings.check === "boolean" ? this.check : false;
         }
 
@@ -15,12 +15,11 @@
             return this._id;
         }
 
-        get task_name(){
-            return this._task_name;
-        }
+        set check(check){
+            if(typeof check !== "boolean") return;
 
-        get work_time(){
-            return this._work_time;
+            this._check = check;
+            this.save();
         }
 
         get check(){
@@ -28,11 +27,12 @@
         }
 
         save(){
-            localStorage["task_"+this._id] = JSON.stringify({
-                id:this._id,
-                task_name:this._task_name,
-                work_time:this._work_time,
-                updated:Date.now()
+            localStorage["task_"+this.id] = JSON.stringify({
+                id:this.id,
+                task_name:this.task_name,
+                work_time:this.work_time,
+                updated:Date.now(),
+                check:this.check
             });
 
             //TODO サーバに保存
