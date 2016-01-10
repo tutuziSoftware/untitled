@@ -64,6 +64,10 @@
             task.save();
         };
 
+        $scope.is_out_of_task = function(){
+            return this.$index >= $scope.tasks.get_out_of_task_index($scope.work_time_full);
+        };
+
         $scope.sum_work_task = function(){
             if($scope.tasks === void 0) return 0;
 

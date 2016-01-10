@@ -22,3 +22,7 @@ li{
 .task_detail{
     margin-left: 19px;
 }
+
+.out_of_task{
+    background-color: gainsboro;
+}

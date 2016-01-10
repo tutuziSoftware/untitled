@@ -5,7 +5,7 @@
 <body ng-app="unt">
     <div ng-controller="tasks">
         <ul unt-sortable>
-            <li ng-repeat="task in tasks" class="task" id="task_{{task.id}}">
+            <li ng-repeat="task in tasks" class="task" id="task_{{task.id}}" ng-class="{out_of_task: is_out_of_task()}">
                 <div ng-hide="task.is_write">
                     <span class="ui-icon ui-icon-grip-dotted-horizontal sortable_icon"></span>
                     <div class="task_detail">
