@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div ng-if="task.is_write">
-                    <input ng-model="task.task_name" />
-                    <input ng-model="task.work_time" type="number" />
+                    <input ng-model="task.task_name" placeholder="タスク名" />
+                    <input ng-model="task.work_time" type="number" placeholder="作業時間" />
                     <input ng-model="task.date" type="datetime-local" />
                     <button ng-click="task_write_end()">保存</button>
                     <button ng-click="task_delete()">削除</button>
