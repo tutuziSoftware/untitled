@@ -53,6 +53,13 @@
          *  angularは()=>{}な関数を使うとthisが変化しない
          */
 
+        $scope.add_task = function(){
+            var task = new Task;
+            task.is_write = true;
+
+            $scope.tasks.unshift(task);
+        };
+
         $scope.task_write = function(){
             this.task.is_write = true;
         };

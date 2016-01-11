@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="index.css" />
 <body ng-app="unt">
     <div ng-controller="tasks">
+        <span ng-click="add_task()">
+            <span class="ui-icon ui-icon-plus"></span>
+            タスクを追加
+        </span>
         <ul unt-sortable>
             <li ng-repeat="task in tasks" class="task" id="task_{{task.id}}" ng-class="{out_of_task: is_out_of_task()}">
                 <div ng-hide="task.is_write">
