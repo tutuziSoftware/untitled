@@ -5,6 +5,17 @@ var Task;
 
     Task = class {
         constructor(settings) {
+            if(settings === void 0){
+                settings = {
+                    task_name:"",
+                    work_time:0,
+                    id:Date.now(),
+                    updated:Date.now(),
+                    check:false,
+                    date:""
+                };
+            }
+
             this.task_name = settings.task_name ? settings.task_name : "";
             //TODO 数値チェックを入れる
             this.work_time = settings.work_time ? settings.work_time : 0;
