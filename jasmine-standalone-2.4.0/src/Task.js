@@ -11,6 +11,7 @@ var Task;
             this._id = settings.id ? settings.id : "";
             this.updated = settings.updated ? new Date(settings.updated).getTime() : "";
             this._check = typeof settings.check === "boolean" ? settings.check : false;
+            this.date = settings.date;
         }
 
         get id(){
@@ -33,7 +34,8 @@ var Task;
                 task_name:this.task_name,
                 work_time:this.work_time,
                 updated:Date.now(),
-                check:this.check
+                check:this.check,
+                date:this.date
             });
 
             //TODO サーバに保存
